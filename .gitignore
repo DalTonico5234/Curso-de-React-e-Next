@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Key
+id_ed25519.pub
+
 # dependencies
 /node_modules
 /.pnp
