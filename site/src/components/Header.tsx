@@ -11,17 +11,18 @@ export default function Header() {
   const jogoAtual = params.jogo as string || "jogo"; //minecraft
 
   const link_home = `/${jogoAtual}/home`;
+  
 
   const link_style = (link_page: string) => {
     const pagSelecionada = pathname === link_page;
 
     return pagSelecionada // If
-      ? "px-4 py-2 text-[#F4C708] font-semibold hover:scale-110 transition" //Then Yellow
+      ? "px-4 py-2 text-orange-400 font-semibold hover:scale-110 transition" //Then Orange
       : "px-4 py-2 text-[#02273F] font-semibold hover:text-white hover:scale-125 transition"; // Else Normal
   };
   return (
     <header className="w-full bg-[#217DA5] shadow-md sticky top-0 z-5">
-      <div className="container mx-auto flex flex-col items-center py-4 px-4 sm:px-6">
+      <div className="container mx-auto flex flex-col sm:items-center items-end py-4 px-4 sm:px-6">
         <div className="flex">
           <Image
             src={icone_azul}

@@ -1,21 +1,23 @@
 // src/app/[jogo]/home/page.tsx
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 
-export default async function HomePage({ 
-  params 
-}: { 
-  params: Promise<{ jogo: string }> // Note que agora definimos como uma Promise
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ jogo: string }>;
 }) {
-  // Aguardamos os parâmetros serem resolvidos
   const { jogo } = await params;
 
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold capitalize">
-        Página Inicial: {jogo}
-      </h1>
-      <p className="mt-4 text-gray-600">
-        Bem-vindo à central de informações de {jogo}.
-      </p>
+    <div>
+      <Sidebar></Sidebar>
+      <Header></Header>
+      <div className="bg-[#02273F] h-screen w-screen ">
+        <h1>
+          Home
+        </h1>
+      </div>
     </div>
   );
 }
