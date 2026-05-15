@@ -1,23 +1,25 @@
-// src/app/[jogo]/home/page.tsx
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import MinecraftHome from "@/components/games/MinecraftHome";
+import StardewValleyHome from "@/components/games/StardewValleyHome";
+import GTA6Home from "@/components/games/GTA6Home";
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ jogo: string }>;
-}) {
+export default async function HomePage({ params }: { params: Promise<{ jogo: string }> }) {
   const { jogo } = await params;
+
+  // Mapeando qual componente renderizar para cada jogo
+  const AllHomeContents: Record<string, React.ReactNode> = {
+    minecraft: <MinecraftHome />,
+    gta6: <GTA6Home />,
+    stardew_valley: <StardewValleyHome />
+  };
+
+  //  Mostra o componente, ou uma página default caso não exista
+  const HomeContent = AllHomeContents[jogo] || <div>Page not ready: {jogo}</div>;
 
   return (
     <div>
-      <Sidebar></Sidebar>
-      <Header></Header>
-      <div className="bg-[#02273F] h-screen w-screen ">
-        <h1>
-          Home
-        </h1>
-      </div>
+      {HomeContent}
     </div>
   );
 }
+
+

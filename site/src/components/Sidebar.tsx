@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Arrow from "./Arrow";
+import ArrowButton from "./button/ArrowButton";
 
 export default function Sidebar() {
   // Estados (aberto ou fechado)
@@ -23,19 +23,11 @@ export default function Sidebar() {
 
   return (
     <div>
-      {/* Botão do menu */}
-      <button
+      <ArrowButton
+        isOpen={isOpen}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 p-2 bg-orange-600 text-white rounded-md hover:scale-110 transition shadow-md"
-        aria-label="Abrir menu de jogos"
-      >
-        <Arrow
-          className={`w-6 h-6 transition-transform duration-300 ${
-            isOpen ? "rotate-90" : "rotate-0"
-          }`}
-        />
-      </button>
-
+      ></ArrowButton>
+      
       {/* Overlay */}
       {isOpen && (
         <div
@@ -46,7 +38,7 @@ export default function Sidebar() {
 
       {/* Menu em si */}
       <aside
-        className={`fixed inset-y-0 left-0 md:w-1/4 w-48 bg-[#064975] z-30 transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 md:w-1/4 w-48 bg-[#064975] z-30 transition-transform duration-300 flex flex-column justify-center items-center ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -60,11 +52,14 @@ export default function Sidebar() {
                 key={jogo.slug}
                 href={`/${jogo.slug}/${subPaginaAtual}`}
                 onClick={() => setIsOpen(false)}
-                className={`p-2 text-white sm:text-2xl text-md hover:scale-110 rounded ${estaAtivo ? "bg-[#217DA5]" : ""}`}
+                className="p-2 sm:text-2xl text-md font-semibold hover:scale-110 rounded bg-[#217DA5]"
               >
-                <span className=""> {"{"} </span>
-                {jogo.nome}
-                <span className=""> {"}"} </span>
+                <span
+                  className={`${estaAtivo ? "text-orange-400 font-black" : "text-white"}`}
+                >
+                  {" "}
+                  {"{"} {jogo.nome} {"}"}
+                </span>
               </Link>
             );
           })}

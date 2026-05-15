@@ -1,6 +1,9 @@
-// Importando o CSS global (igual estava no _app.tsx)
-import '@/app/globals.css';
+import "@/app/globals.css";
 import type { Metadata } from "next";
+
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import HomeButton from "@/components/button/HomeButton";
 
 export const metadata: Metadata = {
   title: "Intragram",
@@ -13,11 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Mantido lang="en" como no _document.tsx original
-    <html lang="en"> 
-      {/* Aplicando APENAS a classe antialiased, idêntico ao _document.tsx */}
-      <body className="antialiased">
+    <html lang="en">
+      <body
+        className="antialiased bg-gray-50 text-gray-900"
+        suppressHydrationWarning
+      >
+        <Header />
+        <Sidebar />
         {children}
+        <HomeButton />
       </body>
     </html>
   );
